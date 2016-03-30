@@ -45,9 +45,12 @@ public class UserJDBCTemplate implements UserDAO{
 	@Override
 	public User getUser(Integer id) {
 		
-		// Variables
-		String SQL = "SELECT (_id,name,surname,age,address,extra) "
-				+	 "FROM User where _id = ?";
+		// SQL query
+		String SQL = "SELECT _id,name,surname,age,address,extra"
+					+ " FROM User"
+					+ " WHERE _id = ?";
+
+		// User instance
 	   	User user = null;
 		
 	   	try{
@@ -85,22 +88,21 @@ public class UserJDBCTemplate implements UserDAO{
 	public void delete(Integer id) {
 		
 		// SQL query
-		String SQL = "DELETE FROM User "
-				+ 	 "WHERE _id = ?";
+		String SQL = "DELETE FROM User"
+				+ 	 " WHERE _id = ?";
 		userJDBCTemplateObject.update(SQL, id);
 	 	
-	 	// Log and return
-	 	System.out.println("Deleted User with _id = " + id );
 	  	return;				
 	}
 
 	@Override
-	public void update(Integer id, Integer age) {
+	public void update(Integer id, String age) {
 		
 		// SQL query
 		String SQL = "UPDATE User "
 				+ 	 "SET age = ? "
 				+ 	 "WHERE _id = ?";
+		
 		userJDBCTemplateObject.update(SQL, age, id);
 	    
 	    // Log

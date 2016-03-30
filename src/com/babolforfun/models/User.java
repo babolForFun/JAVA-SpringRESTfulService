@@ -62,6 +62,14 @@ public class User {
 	public void setExtra(String extra) {
 		this.extra = extra;
 	}
+
+	@Override
+	public String toString() {
+		return "User [_id=" + _id + ", name=" + name + ", surname=" + surname + ", age=" + age + ", address=" + address
+				+ ", extra=" + extra + "]";
+	}
+	
+	
 	
 	
 	
