@@ -10,6 +10,9 @@ import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.validation.BindingResult;
@@ -111,5 +114,30 @@ public class RESTcontroller {
   
 	}
 
+	// List all user
+	@RequestMapping(value = "/userlist")
+	public void getUserList(){
+
+	  	// Get Beans.xml from context and from it the bean UserJDBCTemplate
+	    @SuppressWarnings("resource")
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+	    UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
+	  	
+	    // Get the list
+	    List<User> users = userJDBCTemplate.listAllUsers();
+	    
+	    // Serialize list
+	    Gson gson = new Gson();
+	    String response = gson.toJson(users);
+	    
+	    if (users!=null){
+	    	System.out.println(response);
+	    }else{
+			System.out.println("{\"result\": \"Error: check Server log console\"}");
+		}
+//  curl http://localhost:8080/RESTService/rest/methods/userlist
+	    
+
+	}
 
 }

@@ -36,9 +36,6 @@ public class UserJDBCTemplate implements UserDAO{
 		String SQL = "INSERT INTO User (name, surname, age, address, extra) VALUES  (?, ?, ?, ?, ?)";
 		userJDBCTemplateObject.update( SQL, name, surname, age, address, extra);
     	
-    	// Log
-    	System.out.println("User Created");
-    	
 	    return;				
 	}
 
@@ -71,8 +68,8 @@ public class UserJDBCTemplate implements UserDAO{
 	public List<User> listAllUsers() {
 		
 		// SQL query
-		String SQL = "SELECT (_id,name,surname,age,address,extra) "
-				+ 	 "FROM User";
+		String SQL = "SELECT _id,name,surname,age,address,extra"
+				+ 	 " FROM User";
 		
 		// Calling user mapper for mapping
 	 	List <User> users = userJDBCTemplateObject.query(
@@ -105,8 +102,6 @@ public class UserJDBCTemplate implements UserDAO{
 		
 		userJDBCTemplateObject.update(SQL, age, id);
 	    
-	    // Log
-	    System.out.println("Updated Record with ID = " + id );
 	    return;		
 	}
 
