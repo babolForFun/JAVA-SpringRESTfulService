@@ -41,7 +41,6 @@ public class RESTcontroller {
 	    		user.getExtra());
 	    
 	   System.out.println("{\"result\": \"succesfull\"}");
-	 //curl --data "name=Gabriele&Surname=Foo&age=28&address=London, Wembley&extra=keen on JAVA" http://localhost:8080/RESTService/rest/methods/addUser
 
 	}
 }
