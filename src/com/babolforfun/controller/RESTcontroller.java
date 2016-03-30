@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @RestController
 @RequestMapping("/methods")
 public class RESTcontroller {
- 
+  
 	// Create user binding the result
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public void addUserFromRest(@ModelAttribute("user")User user, BindingResult result){
