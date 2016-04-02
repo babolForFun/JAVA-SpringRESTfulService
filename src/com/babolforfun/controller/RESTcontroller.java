@@ -21,16 +21,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  * REST controller
- * @author kaliba
+ * @author babolForFun
  *
  */
 @RestController
 @RequestMapping("/methods")
 public class RESTcontroller {
   
-	// Create user binding the result
+
+	/**
+	 * Create user binding the result
+	 * @param user User
+	 * @param result binding result
+	 * @return
+	 */
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-	public void addUserFromRest(@ModelAttribute("user")User user, BindingResult result){
+	public String addUserFromRest(@ModelAttribute("user")User user, BindingResult result){
 
 	  	// Get Beans.xml from context and from it the bean UserJDBCTemplate
 	    @SuppressWarnings("resource")
@@ -45,13 +51,17 @@ public class RESTcontroller {
 	    		user.getAddress(),
 	    		user.getExtra());
 	    
-	   System.out.println("{\"result\": \"succesfull\"}");
-
+	   return "{\"result\": \"User added\"}\n";
 	}
 	
-	// Get user from Id
+
+	/**
+	 * Get user from Id 
+	 * @param id user id
+	 * @return User string
+	 */
 	@RequestMapping(value = "/getUserById", method = RequestMethod.POST)
-	public void getUser(@RequestParam("_id") String id){
+	public String getUser(@RequestParam("_id") String id){
 
 	  	// Get Beans.xml from context and from it the bean UserJDBCTemplate
 	    @SuppressWarnings("resource")
@@ -66,15 +76,19 @@ public class RESTcontroller {
 		String response = gson.toJson(user);
 		
 		if (user!=null){
-			System.out.println(response);
+			return response.concat("\n");
 		}else{
-			System.out.println("{\"result\": \"Error: check Server log console\"}");
+			return "{\"result\": \"Error: check Server log console\"}\n";
 		}
 	}
 
-	// Delete user binding the result
+	/**
+	 * Delete user binding the result
+	 * @param _id user id
+	 * @return response
+	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public void deleteUser(@RequestParam("_id") String _id){
+	public String deleteUser(@RequestParam("_id") String _id){
 
 	  	// Get Beans.xml from context and from it the bean UserJDBCTemplate
 	    @SuppressWarnings("resource")
@@ -90,15 +104,20 @@ public class RESTcontroller {
 	    // Response
 	    if (user != null){
 	    	userJDBCTemplate.delete(id);
-	    	System.out.println("{\"result\": \"Succesful\"}");
+	    	return "{\"result\": \"User deleted\"}\n";
 	    }else{
-	    	System.out.println("{\"result\": \"User with this ID does not exist\"}");
+	    	return "{\"result\": \"User with this ID does not exist\"}\n";
 		}
 	}
 
-	// Update [age] of a user
+	/**
+	 * Update [age] of a user
+	 * @param _id user id
+	 * @param age field to update
+	 * @return response
+	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public void updateUser(@RequestParam("_id") String _id,
+	public String updateUser(@RequestParam("_id") String _id,
 							@RequestParam("age") String age){
 
 	  	// Get Beans.xml from context and from it the bean UserJDBCTemplate
@@ -110,13 +129,16 @@ public class RESTcontroller {
 	    userJDBCTemplate.update(Integer.parseInt(_id),age);
 
 	    // Response
-    	System.out.println("{\"result\": \"Succesful\"}");
+    	return "{\"result\": \"User updated\"}".concat("\n");
   
 	}
 
-	// List all user
+	/**
+	 * List all user
+	 * @return user list
+	 */
 	@RequestMapping(value = "/userlist")
-	public void getUserList(){
+	public String getUserList(){
 
 	  	// Get Beans.xml from context and from it the bean UserJDBCTemplate
 	    @SuppressWarnings("resource")
@@ -131,13 +153,11 @@ public class RESTcontroller {
 	    String response = gson.toJson(users);
 	    
 	    if (users!=null){
-	    	System.out.println(response);
+	    	return response.concat("\n");
 	    }else{
-			System.out.println("{\"result\": \"Error: check Server log console\"}");
+			return "{\"result\": \"Error: check Server log console\"}\n";
 		}
-//  curl http://localhost:8080/RESTService/rest/methods/userlist
 	    
-
 	}
 
 }
