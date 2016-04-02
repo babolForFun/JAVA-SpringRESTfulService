@@ -51,6 +51,6 @@ $ curl --data "_id=[user_id]" http://localhost:[PORT]/[ProjectName]/rest/methods
 
 User list
 ```sh
-$ curl --data "name=name&Surname=surname&age=yourage&address=address&extra=extraAttribute" http://localhost:[PORT]/[ProjectName]/rest/methods/userlist
+$ curl --data "" http://localhost:[PORT]/[ProjectName]/rest/methods/userlist
 ```
 
