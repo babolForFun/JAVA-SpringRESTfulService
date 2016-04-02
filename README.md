@@ -12,7 +12,7 @@ Basic RESTful sevice that allows CRUD operations to MySQL database.
 ### Version
 1.0.2
 
-![alt tag](https://github.com/babolForFun/JAVA-SpringRESTfulService/blob/master/resource/screen.gif?raw=true)
+![Screen](https://github.com/babolForFun/JAVA-SpringRESTfulService/blob/master/resource/screen.gif?raw=true)
 
 
 ### Database table
