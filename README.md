@@ -6,7 +6,9 @@ Real base RESTful service using JAVA (Spring).
   - Spring 4.2.5
   - Eclipse Java EE Mars.2
   - Tomcat v8.0
-
+  - JSTL
+  - JSP 
+  
 Basic RESTful sevice that allows CRUD operations to MySQL database. 
 
 ### Version
